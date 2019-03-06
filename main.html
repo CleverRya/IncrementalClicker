@@ -1,0 +1,40 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+        crossorigin="anonymous">
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+    </script>
+    <script src="clicker.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="container" class="container">
+
+<div id="clickDiv">
+    <button id="clickButton" style="width:100%;height:15%">Click</button>
+</div>
+
+<div id="labels">
+    <label id="pointsLabel">Points</label>
+    <label id="autoClickerLabel">Auto Clickers</label>
+    <label id="pointMachineLabel">Point Machines</label>
+</div>
+
+<div class="tab">
+        <button id="default" class="tablinks" onclick="tab(event, 'Purchases')">Purchases</button>
+        <button class="tablinks" onclick="tab(event, 'Research')">Research</button>
+
+    </div>
+<div id="Purchases" class="tabcontent">
+    <button id="purchaseAutoClicker"></button>
+      </div>
+      
+      <div id="Research" class="tabcontent" style="display:none">
+      </div>
+</div>
+</body>
+
+

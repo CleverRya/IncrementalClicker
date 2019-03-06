@@ -18,6 +18,8 @@ $("#purchaseAutoClicker").click(function() {
     if (points >= autoClickerPrice){
         points -= autoClickerPrice;
         autoClickers+=1;
+        console.log(autoClickerPrice);
+        autoClickerPrice=Math.pow(autoClickerPrice,1.1);
         label()
         timeout()
 

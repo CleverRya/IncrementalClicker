@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    var points = 1000;
+    var points = 10000000;
     var pointsPerTick = 0;
     var pointsPerClick = 1;
     var tickSpeed = 1000;
@@ -8,17 +8,19 @@ $(document).ready(function () {
     var clickIncreasePrice = 100;
     var autoClickerPrice = 10;
     var autoClickers = 0;
+    var ACIncrement = .1;
+    var ACIncrementPrice = 100;
     var pointMachines = 0;
     var pointMachinePrice = 100;
 
     //open purchase tab
-    document.getElementById("default").click();
+    document.getElementById("defaultTab").click();
 
     //set initial labels on buttons and points label
     label();
 
     //start incremental timer for point increase
-    timeout();
+    timer();
 
     //function when click button is clicked
     $("#clickButton").click(function () {
@@ -34,37 +36,46 @@ $(document).ready(function () {
             autoClickers += 1;
             autoClickerPrice = Math.pow(autoClickerPrice, 1.1);
             label()
-        }else{alert("Not enough points")}
+        } else { alertPoints(); }
     });
     //function for purchasing a 10% increase to click points
-    $("#purchaseClickIncrease").click(function (){
+    $("#purchaseClickIncrease").click(function () {
         if (points >= clickIncreasePrice) {
             points -= clickIncreasePrice;
-            pointsPerClick=pointsPerClick*1.1
+            pointsPerClick = pointsPerClick * 1.1
             clickIncreasePrice = Math.pow(clickIncreasePrice, 1.1);
             label();
-        }else{alert("Not enough points")}
+        } else { alertPoints(); }
     });
 
     //function for purchasing an point machine
     $("#purchasePointMachine").click(function () {
         if (points >= pointMachinePrice) {
             points -= pointMachinePrice;
-            pointMachines +=1;
+            pointMachines += 1;
             pointMachinePrice = Math.pow(pointMachinePrice, 1.1);
             label();
-        }else{alert("Not enough points")}
+        } else { alertPoints(); }
     });
     //function to decrease tick speed by %10
     $("#purchaseTickSpeed").click(function () {
-        if (points>=tickSpeedDecreasePrice) {
-            if (tickSpeed>=100){
-            points -= tickSpeedDecreasePrice;
-            tickSpeed = tickSpeed-100;
-            tickSpeedDecreasePrice = Math.pow(tickSpeedDecreasePrice, 1.1);
+        if (points >= tickSpeedDecreasePrice) {
+            if (tickSpeed >= 100) {
+                points -= tickSpeedDecreasePrice;
+                tickSpeed = tickSpeed - 100;
+                tickSpeedDecreasePrice = Math.pow(tickSpeedDecreasePrice, 1.1);
+                label();
+            } else { alert("You already have the lowest tick rate") }
+        } else { alertPoints(); }
+    });
+
+    $('#purchaseACIncrement').click(function () {
+        if (points >= ACIncrementPrice) {
+            points -= ACIncrementPrice;
+            ACIncrement += .1;
+            ACIncrementPrice = Math.pow(ACIncrementPrice, 1.1);
             label();
-            }else{alert("You already have the lowest tick rate")}
-        }else{alert("Not enough points")}
+        } else { alertPoints(); }
     });
 
     //function to set/update all labels
@@ -73,24 +84,30 @@ $(document).ready(function () {
         document.getElementById("pointsLabel").innerHTML = "Points: " + points.toFixed(2);
         document.getElementById("pointsPerClickLabel").innerHTML = "Points Per Click: " + pointsPerClick.toFixed(2);
         document.getElementById("autoClickerLabel").innerHTML = "AutoClickers: " + autoClickers;
+        document.getElementById("ACPointsPerTickLabel").innerHTML = "AucoClicker PPT: " + (ACIncrement * autoClickers).toFixed(2);
         document.getElementById("pointMachineLabel").innerHTML = "Point Machines: " + pointMachines;
         document.getElementById("pointsPerTickLabel").innerHTML = "Points Per Tick: " + pointsPerTick.toFixed(2);
-        document.getElementById("tickSpeedLabel").innerHTML = "Tick Speed (Seconds): " + (tickSpeed/1000).toFixed(2);
+        document.getElementById("tickSpeedLabel").innerHTML = "Tick Speed (Seconds): " + (tickSpeed / 1000).toFixed(2);
         //button labels
         document.getElementById("purchaseAutoClicker").innerHTML = "AutoClicker: " + autoClickerPrice.toFixed(2);
         document.getElementById("purchaseClickIncrease").innerHTML = "Increase Click %10: " + clickIncreasePrice.toFixed(2);
         document.getElementById("purchasePointMachine").innerHTML = "Point Machine: " + pointMachinePrice.toFixed(2);
-        document.getElementById("purchaseTickSpeed").innerHTML = "Increase Tick Speed %10 (Max 100%)" + tickSpeedDecreasePrice.toFixed(2);
+        document.getElementById("purchaseTickSpeed").innerHTML = "Increase Tick Speed %10: " + tickSpeedDecreasePrice.toFixed(2);
+        document.getElementById("purchaseACIncrement").innerHTML = "Increase AutoClicker Point Gen %10: " + ACIncrementPrice.toFixed(2);
     }
 
     //timer function for incrementing points
-    function timeout() {
+    function timer() {
         setTimeout(function () {
-            pointsPerTick = ((.1 * autoClickers)+(.3 * pointMachines));
+            pointsPerTick = ((ACIncrement * autoClickers) + (.3 * pointMachines));
             points += pointsPerTick;
             label();
-            timeout();
+            timer();
         }, tickSpeed);
+    }
+
+    function alertPoints() {
+        alert("Not enough points");
     }
 
 });

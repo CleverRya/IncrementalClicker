@@ -1,49 +1,65 @@
 <head>
+    <meta name="viewport" content="width=device-width">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="clicker.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
-        </script>
-    <script src="clicker.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div id="container" class="d-flex">
+    <div id="container">
 
-        <div id="statTracker" class="w-25" style="margin-right:30px;">
-            <h4>Stat Tracker (Temp)</h4>
-
-            <div id="clickerInfo" style="width:100%">
-                <label class="label" id="pointsLabel"></label>
-                <label class="label" id="pointsPerClickLabel"></label>
+        <div>
+            <div class="w-75" style="float: left;">
+                <label class="pointLabel" id="pointsLabel"></label>
+                <label class="pointLabel" style="font-size: 75%;" id="pointsPerTickLabel"></label>
             </div>
+     
+<button id="myBtn" style="width:25%;float:right;">Stats</button>
 
-            <div id="autoClickerInfo" style="width:100%">
-                <label class="label" id="autoClickerLabel"></label>
-                <label class="label" id="ACPointsPerTickLabel"></label>
-            </div>
 
-            <div id="pointMachineInfo" style="width:100%">
-                <label class="label" id="pointMachineLabel"></label>
-            </div>
+<div id="myModal" class="modal">
 
-            <div id="tickInfo" style="width:100%">
-                <label class="label" id="pointsPerTickLabel"></label>
-                <label class="label" id="tickSpeedLabel"></label>
 
-            </div>
+  <div class="modal-content">
+    <span id="closeModal" data-dismiss="modal" class="close">&times;</span>
+    <p>Some text in the Modal..</p>
+  </div>
+
+</div>
         </div>
 
-        <div id="clickDiv" class="w-50">
-            <button id="clickButton" style="width:100%;height:15%">Click</button>
+        <div id="clickDiv">
+            <button id="clickButton" style="width:100%;height:50%">Click</button>
         </div>
 
-        <div class="w-25" style="margin-left:30px;">
+        <div>
+            <div>
+                    
+                    <label class="label" id="pointsPerClickLabel"></label>
+                    
+                    <label class="label" id="tickSpeedLabel"></label>
+            </div>
             <div class="tab">
-                <button id="defaultTab" class="tablinks" onclick="tab(event, 'Purchases')">Purchases</button>
+                <button id="defaultTab" class="tablinks" onclick="tab(event, 'Home')">Home</button>
+                <button class="tablinks" onclick="tab(event, 'Purchases')">Purchases</button>
                 <button class="tablinks" onclick="tab(event, 'Research')">Research</button>
             </div>
+
+            <div id="Home" class="tabcontent">
+                    <label class="label" id="autoClickerLabel"></label>
+                    <label class="label" id="pointMachineLabel"></label>
+            </div>
+
             <div id="Purchases" class="tabcontent">
                 <button id="purchaseAutoClicker"></button>
                 <button id="purchasePointMachine"></button>

@@ -25,9 +25,16 @@ $(document).ready(function () {
     //function when click button is clicked
     $("#clickButton").click(function () {
         points += pointsPerClick;
-        console.log(points);
         label(points, autoClickerPrice);
     });
+
+    $('#myBtn').click(function () {
+        $('#myModal').modal('show')
+    });
+
+   // $('#closeModal').click(function (){
+     //   $('#myModal').modal('hide')
+   // });
 
     //function for purchasing an autoclicker
     $("#purchaseAutoClicker").click(function () {
@@ -84,7 +91,6 @@ $(document).ready(function () {
         document.getElementById("pointsLabel").innerHTML = "Points: " + points.toFixed(2);
         document.getElementById("pointsPerClickLabel").innerHTML = "Points Per Click: " + pointsPerClick.toFixed(2);
         document.getElementById("autoClickerLabel").innerHTML = "AutoClickers: " + autoClickers;
-        document.getElementById("ACPointsPerTickLabel").innerHTML = "AucoClicker PPT: " + (ACIncrement * autoClickers).toFixed(2);
         document.getElementById("pointMachineLabel").innerHTML = "Point Machines: " + pointMachines;
         document.getElementById("pointsPerTickLabel").innerHTML = "Points Per Tick: " + pointsPerTick.toFixed(2);
         document.getElementById("tickSpeedLabel").innerHTML = "Tick Speed (Seconds): " + (tickSpeed / 1000).toFixed(2);

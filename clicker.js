@@ -1,118 +1,111 @@
 $(document).ready(function () {
 
-    var points = 10000000;
-    var pointsPerTick = 0;
-    var pointsPerClick = 1;
-    var tickSpeed = 1000;
-    var tickSpeedDecreasePrice = 1000;
-    var clickIncreasePrice = 100;
-    var autoClickerPrice = 10;
-    var autoClickers = 0;
-    var ACIncrement = .1;
-    var ACIncrementPrice = 100;
-    var pointMachines = 0;
-    var pointMachinePrice = 100;
+    var stats = {
+    points : 10000000,
+    pointsPerTick : 0,
+    pointsPerClick : 1,
+    tickSpeed : 1000,
+    tickSpeedDecreasePrice : 1000,
+    clickIncreasePrice : 100,
+    autoClickerPrice : 10,
+    autoClickers : 0,
+    ACIncrement : .1,
+    ACIncrementPrice : 100,
+    pointMachines : 0,
+    pointMachinePrice : 100,
+    }
 
-    //open purchase tab
+    //open home tab by default
     document.getElementById("defaultTab").click();
-
-    //set initial labels on buttons and points label
+    //set initial labels on buttons and stats.points label
     label();
-
     //start incremental timer for point increase
     timer();
-
     //function when click button is clicked
     $("#clickButton").click(function () {
-        points += pointsPerClick;
-        label(points, autoClickerPrice);
+        stats.points += stats.pointsPerClick;
+        label();
     });
 
     $('#myBtn').click(function () {
         $('#myModal').modal('show')
     });
-
-   // $('#closeModal').click(function (){
-     //   $('#myModal').modal('hide')
-   // });
-
     //function for purchasing an autoclicker
     $("#purchaseAutoClicker").click(function () {
-        if (points >= autoClickerPrice) {
-            points -= autoClickerPrice;
-            autoClickers += 1;
-            autoClickerPrice = Math.pow(autoClickerPrice, 1.1);
+        if (stats.points >= stats.autoClickerPrice) {
+            stats.points -= stats.autoClickerPrice;
+            stats.autoClickers += 1;
+            stats.autoClickerPrice = Math.pow(stats.autoClickerPrice, 1.1);
             label()
-        } else { alertPoints(); }
+        } else { alertpoints(); }
     });
-    //function for purchasing a 10% increase to click points
+    //function for purchasing a 10% increase to manual click points
     $("#purchaseClickIncrease").click(function () {
-        if (points >= clickIncreasePrice) {
-            points -= clickIncreasePrice;
-            pointsPerClick = pointsPerClick * 1.1
-            clickIncreasePrice = Math.pow(clickIncreasePrice, 1.1);
+        if (stats.points >= stats.clickIncreasePrice) {
+            stats.points -= stats.clickIncreasePrice;
+            stats.pointsPerClick = stats.pointsPerClick * 1.1
+            stats.clickIncreasePrice = Math.pow(stats.clickIncreasePrice, 1.1);
             label();
-        } else { alertPoints(); }
+        } else { alertpoints(); }
     });
-
     //function for purchasing an point machine
     $("#purchasePointMachine").click(function () {
-        if (points >= pointMachinePrice) {
-            points -= pointMachinePrice;
-            pointMachines += 1;
-            pointMachinePrice = Math.pow(pointMachinePrice, 1.1);
+        if (stats.points >= stats.pointMachinePrice) {
+            stats.points -= stats.pointMachinePrice;
+            stats.pointMachines += 1;
+            stats.pointMachinePrice = Math.pow(stats.pointMachinePrice, 1.1);
             label();
-        } else { alertPoints(); }
+        } else { alertpoints(); }
     });
     //function to decrease tick speed by %10
     $("#purchaseTickSpeed").click(function () {
-        if (points >= tickSpeedDecreasePrice) {
-            if (tickSpeed >= 100) {
-                points -= tickSpeedDecreasePrice;
-                tickSpeed = tickSpeed - 100;
-                tickSpeedDecreasePrice = Math.pow(tickSpeedDecreasePrice, 1.1);
+        if (stats.points >= stats.tickSpeedDecreasePrice) {
+            if (stats.tickSpeed >= 100) {
+                stats.points -= stats.tickSpeedDecreasePrice;
+                stats.tickSpeed = stats.tickSpeed - 100;
+                stats.tickSpeedDecreasePrice = Math.pow(stats.tickSpeedDecreasePrice, 1.1);
                 label();
             } else { alert("You already have the lowest tick rate") }
-        } else { alertPoints(); }
+        } else { alertpoints(); }
     });
 
     $('#purchaseACIncrement').click(function () {
-        if (points >= ACIncrementPrice) {
-            points -= ACIncrementPrice;
-            ACIncrement += .1;
-            ACIncrementPrice = Math.pow(ACIncrementPrice, 1.1);
+        if (stats.points >= stats.ACIncrementPrice) {
+            stats.points -= stats.ACIncrementPrice;
+            stats.ACIncrement += .1;
+            stats.ACIncrementPrice = Math.pow(stats.ACIncrementPrice, 1.1);
             label();
-        } else { alertPoints(); }
+        } else { alertpoints(); }
     });
 
     //function to set/update all labels
     function label() {
         //info labels
-        document.getElementById("pointsLabel").innerHTML = "Points: " + points.toFixed(2);
-        document.getElementById("pointsPerClickLabel").innerHTML = "Points Per Click: " + pointsPerClick.toFixed(2);
-        document.getElementById("autoClickerLabel").innerHTML = "AutoClickers: " + autoClickers;
-        document.getElementById("pointMachineLabel").innerHTML = "Point Machines: " + pointMachines;
-        document.getElementById("pointsPerTickLabel").innerHTML = "Points Per Tick: " + pointsPerTick.toFixed(2);
-        document.getElementById("tickSpeedLabel").innerHTML = "Tick Speed (Seconds): " + (tickSpeed / 1000).toFixed(2);
+        document.getElementById("pointsLabel").innerHTML = "Points: " + stats.points.toFixed(2);
+        document.getElementById("pointsPerClickLabel").innerHTML = "Points Per Click: " + stats.pointsPerClick.toFixed(2);
+        document.getElementById("autoClickerLabel").innerHTML = "AutoClickers: " + stats.autoClickers;
+        document.getElementById("pointMachineLabel").innerHTML = "Point Machines: " + stats.pointMachines;
+        document.getElementById("pointsPerTickLabel").innerHTML = "Points Per Tick: " + stats.pointsPerTick.toFixed(2);
+        document.getElementById("tickSpeedLabel").innerHTML = "Tick Speed (Seconds): " + (stats.tickSpeed / 1000).toFixed(2);
         //button labels
-        document.getElementById("purchaseAutoClicker").innerHTML = "AutoClicker: " + autoClickerPrice.toFixed(2);
-        document.getElementById("purchaseClickIncrease").innerHTML = "Increase Click %10: " + clickIncreasePrice.toFixed(2);
-        document.getElementById("purchasePointMachine").innerHTML = "Point Machine: " + pointMachinePrice.toFixed(2);
-        document.getElementById("purchaseTickSpeed").innerHTML = "Increase Tick Speed %10: " + tickSpeedDecreasePrice.toFixed(2);
-        document.getElementById("purchaseACIncrement").innerHTML = "Increase AutoClicker Point Gen %10: " + ACIncrementPrice.toFixed(2);
+        document.getElementById("purchaseAutoClicker").innerHTML = "AutoClicker: " + stats.autoClickerPrice.toFixed(2);
+        document.getElementById("purchaseClickIncrease").innerHTML = "Increase Click %10: " + stats.clickIncreasePrice.toFixed(2);
+        document.getElementById("purchasePointMachine").innerHTML = "Point Machine: " + stats.pointMachinePrice.toFixed(2);
+        document.getElementById("purchaseTickSpeed").innerHTML = "Increase Tick Speed %10: " + stats.tickSpeedDecreasePrice.toFixed(2);
+        document.getElementById("purchaseACIncrement").innerHTML = "Increase AutoClicker Point Gen %10: " + stats.ACIncrementPrice.toFixed(2);
     }
 
     //timer function for incrementing points
     function timer() {
         setTimeout(function () {
-            pointsPerTick = ((ACIncrement * autoClickers) + (.3 * pointMachines));
-            points += pointsPerTick;
+            stats.pointsPerTick = ((stats.ACIncrement * stats.autoClickers) + (.3 * stats.pointMachines));
+            stats.points += stats.pointsPerTick;
             label();
             timer();
-        }, tickSpeed);
+        }, stats.tickSpeed);
     }
 
-    function alertPoints() {
+    function alertpoints() {
         alert("Not enough points");
     }
 

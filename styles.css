@@ -1,10 +1,17 @@
+.html {
+  height: 100%;
+}
+::-webkit-scrollbar {
+  width: 0px; 
+}
+
 .tab {
     overflow: hidden;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
   }
   
-  /* Style the buttons that are used to open the tab content */
+ 
   .tab button {
     background-color: inherit;
     float: left;
@@ -15,18 +22,20 @@
     transition: 0.3s;
   }
   
-  /* Change background color of buttons on hover */
+
   .tab button:hover {
     background-color: #ddd;
   }
   
-  /* Create an active/current tablink class */
+
   .tab button.active {
     background-color: #ccc;
   }
   
-  /* Style the tab content */
+
   .tabcontent {
+    min-height: -webkit-min-content;
+    width: 100%;
     display: none;
     padding: 6px 12px;
     border: 1px solid #ccc;
@@ -36,12 +45,17 @@
   .label {
     border: 1px solid black;
     padding: 0px 10px 0px 10px;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-top: .25rem;
+    margin-bottom: .25rem;
+    font-size: 110%;
   }
 
   .pointLabel {
-    font-size: 100%; display: block; position: relative;font-weight: bold;margin: 0rem;
+    font-size: 100%; 
+    display: block; 
+    position: relative;
+    font-weight: bold;
+    margin: 0rem;
   }
 
   .btn-small {

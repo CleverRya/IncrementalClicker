@@ -16,59 +16,64 @@
 </head>
 
 <body>
-    <div id="container">
+    <div id="container"
+        style="overflow: hidden;height: 100%;display: flex;flex-direction: column;position: absolute;width: 100%;">
 
         <div>
             <div class="w-75" style="float: left;">
                 <label class="pointLabel" id="pointsLabel"></label>
                 <label class="pointLabel" style="font-size: 75%;" id="pointsPerTickLabel"></label>
             </div>
-     
-<button id="myBtn" style="width:25%;float:right;">Stats</button>
 
+            <button id="myBtn" style="width:25%;float:right;">Stats</button>
 
-<div id="myModal" class="modal">
-
-
-  <div class="modal-content">
-    <span id="closeModal" data-dismiss="modal" class="close">&times;</span>
-    <p>Some text in the Modal..</p>
-  </div>
-
-</div>
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span id="closeModal" data-dismiss="modal" class="close">&times;</span>
+                    <div>
+                        <label class="label" id="pointsPerClickLabel"></label>
+                        <label class="label" id="tickSpeedLabel"></label>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="clickDiv">
             <button id="clickButton" style="width:100%;height:50%">Click</button>
         </div>
 
-        <div>
-            <div>
-                    
-                    <label class="label" id="pointsPerClickLabel"></label>
-                    
-                    <label class="label" id="tickSpeedLabel"></label>
-            </div>
+        <div style="flex: 1; display: flex; flex-direction: column;">
+
             <div class="tab">
                 <button id="defaultTab" class="tablinks" onclick="tab(event, 'Home')">Home</button>
                 <button class="tablinks" onclick="tab(event, 'Purchases')">Purchases</button>
                 <button class="tablinks" onclick="tab(event, 'Research')">Research</button>
             </div>
 
-            <div id="Home" class="tabcontent">
+            <div id="tabWrapper" style="flex: 1; display: flex; overflow: auto;">
+
+                <div id="Home" class="tabcontent">
                     <label class="label" id="autoClickerLabel"></label>
                     <label class="label" id="pointMachineLabel"></label>
-            </div>
+                </div>
 
-            <div id="Purchases" class="tabcontent">
-                <button id="purchaseAutoClicker"></button>
-                <button id="purchasePointMachine"></button>
-            </div>
+                <div id="Purchases" class="tabcontent">
+                    <button id="purchaseAutoClicker"></button>
+                    <button id="purchasePointMachine"></button>
+                </div>
 
-            <div id="Research" class="tabcontent" style="display:none">
-                <button id="purchaseClickIncrease"></button>
-                <button id="purchaseTickSpeed"></button>
-                <button id="purchaseACIncrement"></button>
+                <div id="Research" class="tabcontent" style="display:none">
+                    <button id="purchaseClickIncrease"></button>
+                    <button id="purchaseTickSpeed"></button>
+                    <button id="purchaseACIncrement"></button>
+                    <button id="1" style="width:100%">Test</button>
+                    <button id="1" style="width:100%">Test</button>
+                    <button id="1" style="width:100%">Test</button>
+                    <button id="1" style="width:100%">Test</button>
+                    <button id="1" style="width:100%">Test</button>
+                    <button id="1" style="width:100%">Test</button>
+
+                </div>
             </div>
         </div>
     </div>
